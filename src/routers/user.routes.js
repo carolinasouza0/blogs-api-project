@@ -9,5 +9,6 @@ const router = Router();
 
 router.post('/', validateUser, userController.createUser);
 router.get('/', validate, userController.getAllUsers);
+router.get('/:id', validate, userController.getUserById);
 
 module.exports = router;
