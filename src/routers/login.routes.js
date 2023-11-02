@@ -1,10 +1,9 @@
 const { Router } = require('express');
 
+const router = Router();
 const loginController = require('../controllers/loginController');
 
 const validateLogin = require('../middlewares/validateLogin');
-
-const router = Router();
 
 router.post('/', validateLogin, loginController.loginController);
 
