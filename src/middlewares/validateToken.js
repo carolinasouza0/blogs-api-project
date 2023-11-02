@@ -16,6 +16,7 @@ function validate(req, res, next) {
   try {
     const decoded = jwt.verify(extractToken(token), JWT_SECRET);
     req.user = decoded.payload;
+    console.log(req.user);
     next();
   } catch (err) {
     return res.status(401).json({ message: 'Expired or invalid token' });

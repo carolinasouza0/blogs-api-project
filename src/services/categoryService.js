@@ -12,7 +12,20 @@ const getAllCategories = async () => {
   return categories;
 };
 
+const checkIfExists = async (arrayOfIds) => {
+  const checked = await Category.findAndCountAll({
+    where: { id: arrayOfIds },
+  });
+
+  if (arrayOfIds.length !== checked.count) {
+    return { message: 'one or more "categoryIds" not found' };
+  }
+
+  return checked;
+};
+
 module.exports = {
   createCategory,
   getAllCategories,
+  checkIfExists,
 };
