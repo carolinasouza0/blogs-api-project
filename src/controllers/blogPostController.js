@@ -17,6 +17,15 @@ const createPost = async (req, res) => {
   return res.status(201).json(blogPost);
 };
 
+const getAllPosts = async (req, res) => {
+  const { dataValues } = req.user;
+  const { id } = dataValues;
+
+  const posts = await blogPostService.getAllPosts(id);
+  return res.status(200).json(posts);
+};
+
 module.exports = {
   createPost,
+  getAllPosts,
 };

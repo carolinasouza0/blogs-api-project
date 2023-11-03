@@ -7,5 +7,6 @@ const validateBlogPost = require('../middlewares/validateBlogPost');
 const router = Router();
 
 router.post('/', validate, validateBlogPost, blogPostController.createPost);
+router.get('/', validate, blogPostController.getAllPosts);
 
 module.exports = router;
