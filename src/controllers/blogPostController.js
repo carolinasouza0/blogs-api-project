@@ -25,7 +25,35 @@ const getAllPosts = async (req, res) => {
   return res.status(200).json(posts);
 };
 
+const getPostById = async (req, res) => {
+  const { id } = req.params;
+  const { dataValues } = req.user;
+  const { id: userId } = dataValues;
+
+  const post = await blogPostService.getPostById(id, userId);
+  if (post.message) return res.status(404).json({ message: post.message });
+  // console.log('entrou aqui no CONSOLE', post);
+
+  return res.status(200).json(post);
+};
+
+const updatePost = async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  const { dataValues } = req.user;
+
+  const postId = await blogPostService.updatePost(id, { title, content });
+  if (postId.message) return res.status(401).json({ message: postId.message });
+
+  const updatedPost = await blogPostService.getPostById(id, dataValues.id);
+  // console.log('entrou aqui no CONSOLE', id, dataValues.id, updatedPost);
+
+  return res.status(200).json(updatedPost);
+};
+
 module.exports = {
   createPost,
   getAllPosts,
+  getPostById,  
+  updatePost,
 };

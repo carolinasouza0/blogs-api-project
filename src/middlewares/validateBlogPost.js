@@ -9,6 +9,14 @@ const validatePostSchema = Joi.object({
   'string.empty': 'Some required fields are missing',
 });
 
+const validatePostUpdateSchema = Joi.object({
+  title: Joi.string().required(),
+  content: Joi.string().required(),
+}).messages({
+  'any.required': 'Some required fields are missing',
+  'string.empty': 'Some required fields are missing',
+});
+
 const validatePost = (req, res, next) => {
   const { error } = validatePostSchema.validate(req.body);
   if (error) {
@@ -17,4 +25,15 @@ const validatePost = (req, res, next) => {
   next();
 };
 
-module.exports = validatePost;
+const validatePostUpdate = (req, res, next) => {
+  const { error } = validatePostUpdateSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+  next();
+};
+
+module.exports = {
+  validatePost,
+  validatePostUpdate,
+};
