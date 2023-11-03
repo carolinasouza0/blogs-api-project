@@ -10,5 +10,6 @@ const router = Router();
 router.post('/', validateUser, userController.createUser);
 router.get('/', validate, userController.getAllUsers);
 router.get('/:id', validate, userController.getUserById);
+router.delete('/me', validate, userController.deleteUser);
 
 module.exports = router;
