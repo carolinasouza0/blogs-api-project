@@ -6,6 +6,7 @@ const { validatePost, validatePostUpdate } = require('../middlewares/validateBlo
 
 const router = Router();
 
+router.get('/search', validate, blogPostController.searchPosts);
 router.post('/', validate, validatePost, blogPostController.createPost);
 router.get('/', validate, blogPostController.getAllPosts);
 router.get('/:id', validate, blogPostController.getPostById);

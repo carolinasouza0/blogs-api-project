@@ -66,10 +66,27 @@ const deletePost = async (req, res) => {
   return res.sendStatus(204);
 };
 
+const searchPosts = async (req, res) => {
+  const { q } = req.query;
+  const { dataValues } = req.user;
+  const { id } = dataValues;
+
+  if (q === '') {
+    const posts = await blogPostService.getAllPosts(id);
+    return res.status(200).json(posts);
+  } 
+
+  if (!q) return res.status(200).json([]);
+
+  const posts = await blogPostService.searchPosts(q);
+  return res.status(200).json(posts);
+};
+
 module.exports = {
   createPost,
   getAllPosts,
   getPostById,  
   updatePost,
   deletePost,
+  searchPosts,
 };
