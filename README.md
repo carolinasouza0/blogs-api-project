@@ -39,27 +39,27 @@ Este projeto é uma aplicação em `Node.js` usando o pacote `sequelize` para fa
 
 O Banco possui 4 tabelas criadas com o `ORM Sequelize`:
 
-- Uma tabela chamada `Users` com os atributos:
+- Uma tabela chamada `users` com os atributos:
 
   | `id` | `displayname` | `email` | `password` | `image` |
   | ---- | ------------- | ------- | ---------- | ------- |
 
-- Uma tabela chamada `Categories`, com os atributos:
+- Uma tabela chamada `categories`, com os atributos:
 
-  | `id` | `date` |
+  | `id` | `name` |
   | ---- | ------ |
 
-- Uma tabela chamada `BlogPosts`, com os atributos:
+- Uma tabela chamada `blog_posts`, com os atributos:
 
-  | `id` | `title` | `content` | `userId` | `published` | `updated` |
-  | ---- | ------- | --------- | -------- | ----------- | --------- |
+  | `id` | `title` | `content` | `user_id` | `published` | `updated` |
+  | ---- | ------- | --------- | --------- | ----------- | --------- |
 
-  `userId` é uma **chave estrangeira**, referenciando o id da tabela `Users`
+  `user_id` é uma **chave estrangeira**, referenciando o id da tabela `users`
 
-- Uma tabela chamada `PostCategories`, contendo uma **chave primária composta** utilizando os dois atributos:
+- Uma tabela chamada `post_categories`, contendo uma **chave primária composta** utilizando os dois atributos:
 
-  | `postId` | `categoryId` |
-  | -------- | ------------ |
+  | `post_id` | `category_id` |
+  | --------- | ------------- |
 
 <a id="section"></a>
 
